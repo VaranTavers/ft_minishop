@@ -19,7 +19,7 @@ else
 	if(isset($_POST['delete'])){
 		validate_token($_POST['token'],$sess_token);
 		$parancs="DELETE FROM eshop_users WHERE id = ".$_POST['id'];
-		if (!mysql_queryi($mysqli,$parancs)){
+		if (!mysqli_query($mysqli,$parancs)){
 			die('Error: ' . mysqli_error($mysqli));
 		}else{
 			print  "<TABLE border='1' bgcolor='lightblue'>
@@ -136,6 +136,35 @@ print "</table></div>";
 		</FORM></TD></TR>';
 				print '</TABLE></div>';
 
+if(isset($_POST['remord'])){
+	validate_token($_POST['token'],$sess_token);
+	$parancs="DELETE FROM eshop_orders WHERE id = ".$_POST['id'];
+	if (!mysqli_query($mysqli,$parancs)){
+		die('Error: ' . mysqli_error($mysqli));
+	}else{
+		print  "<TABLE border='1' bgcolor='lightblue'>
+		<TR><TD>An order has been successfully deleted!</TD></TR></table>";
+	}
+}
+				
+$adat3=mysqli_query($mysqli,"SELECT * FROM eshop_orders");
+
+print "<div> <H1> Current Orders </H1>
+		<TABLE border='1'><TR><TD>Id</TD><TD>Order description</TD><TD>Buyer ID</TD><TD>Preset destination ID</TD><TD>Seller ID</TD><TD>Actions</TD></TR>";
+while($data3 = mysqli_fetch_array($adat3)){
+
+	print "<TR>
+	<TD><FORM method='POST' action='admin.php'><input type='input' value='".$sess_token."' name='token' class='jelszo'>
+	<input type='input' value='".$data3['id']."' name='id' readonly></TD>
+	<TD>".$data3['item_list']."</TD>
+	<TD><input type='input' value='".$data3['account']."' name='ertek'></TD>
+	<TD><input type='input' value='".$data3['shipping']."' name='szertek'></TD>
+	<TD>".$data3['sold_by']."</TD>
+	<TD><input type='submit' name='remord' value='Remove'>
+	</TD></form></TR>";
+}
+print "</table></div>";
+				
 mysqli_close($mysqli);
 ?>
 </CENTER>

@@ -18,6 +18,17 @@
 			exit();
 		}
 	}
+	function print_even($str)
+	{
+		if (strlen($str) > 67)
+			echo substr($str, 0, 67)."...";
+		else if (strlen($str) < 32)
+		{
+			echo $str."<BR />";
+		}
+		else
+			echo $str;
+	}
 	
 	function list_ranks($mysqli,$main){
 		$string="<select name='rang'>";
@@ -38,7 +49,11 @@
 	$cartNum = count(explode("(|)", $_SESSION['cart'])) - 1;
 	if ($cartNum < 0)
 		$cartNum = 0;
-	
+	if ($_SESSION['cart'] == "(|)")
+	{
+		$_SESSION['cart'] = "";
+		$cartNum = 0;
+	}
 	//Állapot megvizsgálása(Be / Ki jelentkezett)
 	if (isset($_SESSION['nev'])){
 		//Változók megadása 1

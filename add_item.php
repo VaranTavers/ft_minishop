@@ -42,7 +42,7 @@ else
 				die('Error: ' . mysqli_error($mysqli));
 			}else{
 				print  "<TABLE border='1' bgcolor='lightblue'>
-				<TR><TD>An item successfully changed!</TD></TR></table>";
+				<TR><TD>An item has been successfully changed!</TD></TR></table>";
 			}
 		}
 	}
@@ -84,7 +84,11 @@ else
 		<input type='submit' name='modify' value='Modify'>
 		</TD></form></TR>";
 	}
-	print "<TR>
+	print "
+	<TR>
+	<TH colspan='10'> New Item </TH>
+	</TR>
+	<TR>
 		<TD>
 		<FORM method='POST' action='add_item.php'><input type='input' value='".$sess_token."' name='token' class='jelszo'>
 		<input type='input' value='' name='id' readonly></TD>

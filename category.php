@@ -35,12 +35,14 @@ else
 					while (($offer = mysqli_fetch_array($offerQuery)) && $i < 900)
 					{
 						if (strpos($offer['categories'], ','.$thisCategory['id'].',') !== false){
-							print '<DIV class="hot">
+							echo '<DIV class="hot">
 								<A HREF="item.php?item='.$offer["id"].'"><IMG src="'.$offer["image"].'" class="hot_image"/>
-								<BR />'.$offer["name"].'</A>
+								<BR />';
+							print_even($offer["name"]);
+							echo '</A>
 								<BR />
 								<DIV class="old_price">'.$offer["price"].get_setting($mysqli, "es_currency", "value").'</DIV>
-								<DIV class="price">'.((int)$offer["price_percent"]*(int)$offers["price"]/100).get_setting($mysqli, "es_currency", "value").'</DIV>
+								<DIV class="price">'.((int)$offer["price_percent"]*(int)$offer["price"]/100).get_setting($mysqli, "es_currency", "value").'</DIV>
 							</DIV>';
 							$i++;
 						}
@@ -50,13 +52,14 @@ else
 						$otherQuery = mysqli_query ($mysqli, "SELECT * FROM `eshop_items` WHERE `price_percent`='100'");
 						while (($other = mysqli_fetch_array($otherQuery)) && $i < 900)
 						{
-							if (strpos($offer['categories'], ','.$thisCategory['id'].',')){
-								print '<DIV class="hot">
+							if (strpos($other['categories'], ','.$thisCategory['id'].',') !== false){
+								echo '<DIV class="hot">
 									<A HREF="item.php?item='.$other["id"].'"><IMG src="'.$other["image"].'" class="hot_image"/>
-									<BR />'.$other["name"].'</A>
-									<BR />
-									<BR />
-									<DIV class="price">'.(int)$other["price"].get_setting($mysqli, "es_currency", "value").'</DIV>
+									<BR />';
+									print_even($other["name"]);
+								echo '</A><BR />
+									<DIV class="hot_selling">Price:</DIV>
+									<DIV class="price_simple">'.(int)$other["price"].get_setting($mysqli, "es_currency", "value").'</DIV>
 								</DIV>';
 								$i++;
 							}
@@ -66,12 +69,13 @@ else
 					{
 						while ($i < 8)
 						{
-							print '<DIV class="hot">
+							echo '<DIV class="hot">
 								<A HREF="#"><IMG src="'.get_setting($mysqli, "es_missing_offer_logo", "value").'" class="hot_image"/>
-								<BR />'.get_setting($mysqli, "es_missing_offer_text", "value").'</A>
-								<BR />
-								<BR />
-								<DIV class="price">The right price</DIV>
+								<BR />';
+								print_even(get_setting($mysqli, "es_missing_offer_text", "value"));
+							echo '</A><BR />
+								<DIV class="hot_selling">Price:</DIV>
+								<DIV class="price">The Right One</DIV>
 							</DIV>';
 							$i++;
 						}

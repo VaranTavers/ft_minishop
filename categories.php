@@ -16,7 +16,5 @@
 		echo get_setting($mysqli, "es_categories_missing", "value").'<BR />';
 	}
 				
-	echo '<B> '.get_setting($mysqli, "es_search_text", "value").'</B>
-		<BR /> <FORM> <INPUT type="input" name="search" /> <INPUT type="submit" value="Search" /> </FORM>
-	</DIV>';
+	echo '</DIV>';
 ?>

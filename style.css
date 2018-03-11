@@ -99,6 +99,7 @@ body
 {
 	width:50%;
 	max-width: 140px;
+	max-height: 130px;
 }
 
 li{
@@ -113,12 +114,48 @@ li{
 	text-decoration: line-through;
 }
 
+.hot_selling
+{
+	margin-top: 10px;
+	color: #AAAAAA;
+}
+
+.price_simple
+{
+	margin-top: 10px;
+	font-size: 1.3em;
+	color: #000000;
+	font-weight: bold;
+}
+
+.price_simple_big
+{
+	margin-top: 10px;
+	font-size: 2.0em;
+	color: #000000;
+	font-weight: bold;
+}
+
 .price
 {
 	margin-top: 10px;
 	font-size: 1.3em;
 	color: #DD0000;
 	font-weight: bold;
+}
+.price_big
+{
+	margin-top: 10px;
+	font-size: 2.0em;
+	color: #DD0000;
+	font-weight: bold;
+}
+.old_price_big
+{
+	margin-top: 10px;
+	font-size: 1.5em;
+	color: #AAAAAA;
+	text-decoration: line-through;
 }
 a
 {
@@ -165,4 +202,7 @@ li a:hover {
 #addtocart
 {
 	font-size: 1.5em;
+	border: 1px solid #000000;
+	padding: 5px;
+	background-color: #FFB800;
 }
